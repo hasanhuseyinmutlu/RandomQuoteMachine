@@ -23,16 +23,15 @@
             let randomIndex = Math.floor(Math.random() * qouteSize);
             let randomQuoteData = QUOTEBANK[randomIndex];
 
-            let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text="
 
-            // Add The Quote
-            let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
-            twitterLink += quoteInApiFormat
-            // Add the Author
-            let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
-            twitterLink += " - " + authorInApiFormat
 
-            document.getElementById("tweet-quote").href = twitterLink;
+
+            var quote = '"' + randomQuoteData.quote + '" ' + randomQuoteData.author;
+            var tweetUrl = 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent(quote);
+
+
+
+            document.getElementById("tweet-quote").href = tweetUrl;
             document.getElementById('text').innerText = randomQuoteData.quote;
             document.getElementById('author').innerText = randomQuoteData.author;
         }
@@ -57,7 +56,7 @@
                             <div id="author"></div>
                             </p>
                             <a class="btn btn-outline-success" onclick="genereteQuote()">New quote</a>
-                            <a href="#" id="tweet-quote" class="btn btn-primary">
+                            <a href="#" id="tweet-quote" target="_blank" class="btn btn-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-twitter" viewBox="0 0 16 16">
                                     <path
